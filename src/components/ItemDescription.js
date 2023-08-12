@@ -1,4 +1,22 @@
+import { useParams } from "react-router-dom";
+import { useProducts } from "../contexts/ProductContext";
+import { useEffect } from "react";
+
 function ItemDescription() {
+  const { currentItem, getCurrentItem } = useProducts();
+
+  const { id } = useParams();
+  console.log(id);
+
+  useEffect(
+    function () {
+      getCurrentItem(id);
+    },
+    [id]
+  );
+
+  console.log(currentItem);
+
   return (
     <div className="item-description-page">
       <div className="Description-container">

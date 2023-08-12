@@ -1,26 +1,27 @@
-function ProducutItem() {
+import { Link } from "react-router-dom";
+import { useProducts } from "../contexts/ProductContext";
+
+function ProducutItem({ item }) {
+  const id = item.productID;
+  <span className="label sale">Sale</span>;
   return (
-    <div className="card">
-      <div className="image-container">
-        {/* Replace the placeholder URL with the actual image URL */}
-        <img src="mob_cover.jpeg" alt="Mobile Cover" />
-        <div className="card-icons">
-          <div className="icon-container">
-            <i className="heart-icon far fa-heart"></i>
-            <span className="icon-text">Add to Wishlist</span>
-          </div>
-          <div className="icon-container">
-            <i className="view-icon far fa-eye"></i>
-            <span className="icon-text">Quick View</span>
+    <li className="card">
+      <Link to={`${id}`}>
+        <div className="image-container">
+          <img src={item.productImageLink} alt={item.productTitle} />
+          <div className="labels-container">
+            {item.productIsNew && <span className="label new">New</span>}
+            {item.productSale && <span className="label sale">Sale</span>}
           </div>
         </div>
-        <div className="labels">
-          <span className="sale-label">Sale</span>
-          <span className="new-label">New</span>
+        <div className="content-container">
+          <h2 className="product-title">{item.productTitle}</h2>
+          <p className="product-price">${item.productPrice.toFixed(2)}</p>
+
+          <button className="add-to-cart">Add to Cart</button>
         </div>
-        <button className="add-to-cart-button">Add to Cart</button>
-      </div>
-    </div>
+      </Link>
+    </li>
   );
 }
 
